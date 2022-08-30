@@ -1,0 +1,25 @@
+{
+  "name": "3e4-a22",
+  "version": "1.0.0",
+  "description": "Contenu du 3E4 - Session Automne 2022",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DAG-CSTJ/ServiceDonneeDave.git"
+  },
+  "author": "David-Alexandre Groulx",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DAG-CSTJ/ServiceDonneeDave/issues"
+  },
+  "homepage": "https://github.com/DAG-CSTJ/ServiceDonneeDave#readme",
+  "dependencies": {
+    "chalk": "^5.0.1",
+    "express": "^4.18.1"
+  }
+}
