@@ -1,6 +1,7 @@
 import dayjs from 'dayjs';
 import express from 'express'; // serveur http déjà fait pour nous
 
+import planetsRoutes from './routes/planets-routes.js';
 
 const app = express();
 
@@ -61,5 +62,6 @@ app.get('/matematik/:operation', (req,res)=>{
     res.send(ok.toString());    
 })
 
+app.use('/planets', planetsRoutes)
 
 export default app;
