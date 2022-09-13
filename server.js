@@ -1,8 +1,10 @@
+import './load-env.js';
+
 import chalk from "chalk";
 
 import app from './src/apps.js';
 
-const PORT = 4200;
+const PORT = process.env.PORT;
 
 app.listen(PORT,err => {
 
@@ -15,4 +17,4 @@ app.listen(PORT,err => {
 
 });
 
-console.log(chalk.bgCyanBright('Hello', 'World!'));
+console.log(chalk.bgCyanBright('Online'));

@@ -1,11 +1,13 @@
 import dayjs from 'dayjs';
 import express from 'express'; // serveur http déjà fait pour nous
-
+import database from './libs/database.js';
 import errors from './middlewares/error.js';
 
 import planetsRoutes from './routes/planets-routes.js';
-
+database();
 const app = express();
+
+app.use(express.json());
 
 //TODO : Ajouter du code ici
 

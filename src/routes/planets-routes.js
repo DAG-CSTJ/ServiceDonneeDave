@@ -62,6 +62,27 @@ class PlanetsRoutes{
     post(req,res,next){
         
     }
+
+
+post(req,res,next){
+    const newPlanet = req.body;
+
+    if(newPlanet){
+
+        const index = PLANETESNOM.findIndex((p) => p.id ===req.body.id);
+        if(index === -1){
+            PLANETESNOM.push(newPlanet);
+            res.status(201).json(newPlanet);
+        }
+       else{
+        return next(HttpError.Conflict('Une planète avec un identifiant ${newPlanet.id}'));
+       }
+    } 
+    else{
+        return next(HttpError.BadRequest('Aucune information transmise'))
+    }
+}
+
 }
 
 new PlanetsRoutes();
