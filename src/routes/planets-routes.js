@@ -3,6 +3,9 @@ import  HttpError  from 'http-errors';
 import planets from '../data/planets.js';
 
 import PLANETESNOM from '../data/planets.js'; 
+
+import planetsRepositories from '../repositories/planets.repositories.js';
+
 const router = express.Router();
 
 class PlanetsRoutes{
@@ -24,10 +27,19 @@ class PlanetsRoutes{
         res.status(204).end()
     }
 
-    getAll(req,res,next){
-        res.status(200);
-        console.log('GET ALL PLANETS');
-        res.json(PLANETESNOM);
+    async getAll(req,res,next){
+        // res.status(200);
+        // console.log('GET ALL PLANETS');
+        // res.json(PLANETESNOM);
+
+        try{
+            const planets = await planetsRepositories.retrieveAll();
+            console.log(planets);
+            res.status(200).json(planets)
+        }catch(err){
+            return next(err);
+        }
+        
     }
 
     // /planets/400

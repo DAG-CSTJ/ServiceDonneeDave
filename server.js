@@ -13,7 +13,7 @@ app.listen(PORT,err => {
         process.exit(1);
     }
 
-    console.log(chalk.blue('Server listening on port ${PORT}'));
+    console.log(chalk.blue(`Server listening on port ${PORT}`));
 
 });
 
