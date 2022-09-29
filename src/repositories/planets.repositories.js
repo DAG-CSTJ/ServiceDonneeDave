@@ -1,9 +1,20 @@
 import Planet from '../models/planet-model.js'
 import dayjs from 'dayjs';
+import planetModel from '../models/planet-model.js';
+
+const ZERO_KELVIN = -273.15;
 
 class PlanetsRepository {
 
-    retrieveAll(){
+    retrieveAll(filter = {}){
+
+
+
+        const filterSansWhere = {}
+        const testFiltre = {discoverdBy:'Skadex'} // Where discoveredBy = 'Skadex'
+        const testFiltre2 = {temperature : {$gt:240}, 'position.y': {$lt:500}} //($lt <) ($gt >) ($lte <=) ($gte >=)
+        const testFiltreOr  = {$or : [{temperature: {$gt:240}, 'position.y': {$lt:500} }] } 
+
         return Planet.find(); // select * from planets
     }
 
@@ -11,7 +22,14 @@ class PlanetsRepository {
         return Planet.findById(idPlanet) // SELECT * FROM planets WHERE idPlanet = idPlanet
     }
 
-    transform(planet){
+    transform(planet,transformOptions={}){
+
+        if(transformOptions){
+            //Changer les unités
+            if(transformOptions.unit === 'c'){
+                planet.temperature += ZERO_KELVIN;
+            }
+        }
 
         planet.discoveryDate=dayjs(planet.discoveryDate).format('YYYY-MM-DD');
 
@@ -24,6 +42,9 @@ class PlanetsRepository {
 
     create(planet){
        return Planet.create(planet); // INSERT() INTO planets VALUES()
+    }
+    deleteOne(idPlanet){
+        return Planet.findByIdAndDelete(idPlanet);
     }
 }
 
